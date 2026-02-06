@@ -1,0 +1,30 @@
+design_variables:
+  names: [n1_sample, n2_sample, x1_sample, x2_sample, y1_sample]
+  bounds:
+    lower: [0, 0, 0, 0, 0]
+    upper: [1, 1, 1, 1, 1]
+
+objectives:
+  names: [strain, elastic_modulus]
+
+bo:
+  q_batch: 2
+  num_initial_samples: 6
+  max_iterations: 100
+  ref_margin: 0.05
+  num_restarts: 10
+  raw_samples: 128
+  mc_samples: 128
+
+hardware:
+  gpu_ids: [0, 1]      # 单机多GPU
+  mp_start_method: spawn   # 强烈建议：CUDA + 多进程最稳
+
+objective:
+  callable: "user.objective:objective_function"   # ★ 通用入口
+  max_retries: 1
+  timeout_seconds: 0     # 0 表示不设超时（长时间模拟）
+  parallel: true
+
+database:
+  path: ./data/input_output.csv
