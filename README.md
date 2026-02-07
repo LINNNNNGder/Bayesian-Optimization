@@ -9,23 +9,15 @@ Typical use cases:
 - Multi-objective design space exploration
 
 ## 2. Key Features
-Supports arbitrary-dimension design variables
-
-Supports any number of objectives (multi-objective optimization)
-
-Batch Bayesian optimization using qEHVI
-
-Single-machine multi-GPU parallel execution
-
-Generic objective_function() interface
-
-Automatic resume after interruption
-
-CSV database records all optimization history
-
-Safe for long-running tasks (hour-level simulations)
-
-Fully configuration-driven (no source modification required)
+-Supports arbitrary-dimension design variables
+-Supports any number of objectives (multi-objective optimization)
+-Batch Bayesian optimization using qEHVI
+-Single-machine multi-GPU parallel execution
+-Generic objective_function() interface
+-Automatic resume after interruption
+-CSV database records all optimization history
+-Safe for long-running tasks (hour-level simulations)
+-Fully configuration-driven (no source modification required)
 
 ## 3. Project Structure
 ```
@@ -82,7 +74,7 @@ def objective_function(x: dict, gpu_id=None, device=None) -> dict:
 ```
 
 ### 4.3 Run Optimization
-python -m src.pipeline --config configs/exp.yaml
+`python -m src.pipeline --config configs/exp.yaml`
 
 The system will:
 -Initialize database
@@ -100,56 +92,24 @@ Simply rerun:`python -m src.pipeline --config configs/exp.yaml`.The system autom
 
 Configuration file:`configs/exp.yaml`
 
-### 5.1 Design Variables
-Defines optimization variables and bounds.
-design_variables:
--names: [x1, x2]
-bounds:
--lower: [0, 0]
--upper: [1, 1]
-
-### 5.2 Objectives
-objectives:
--names: [obj1, obj2]
-Must match keys returned by objective_function().
-
-### 5.3 Bayesian Optimization Parameters
-```
-bo:
-  q_batch: 2
-  num_initial_samples: 6
-  max_iterations: 100
-  ref_margin: 0.05
-  num_restarts: 10
-  raw_samples: 128
-  mc_samples: 128
-
-### 5.4 GPU Configuration
-hardware:
-  gpu_ids: [0, 1]
-  mp_start_method: spawn
-
-### 5.5 Objective Function Entry
-objective:
-  callable: "user.objective:objective_function"
-  parallel: true
-  timeout_seconds: 0
-  max_retries: 1
+You should change parameters as follows:
+-Design Variables
+-Objectives
+-Bayesian Optimization Parameters
+-GPU Configuration
+-Objective Function Entry
 
 ## 6. Optimization Workflow
 
 The optimization process proceeds as follows:
 
-Initialize database
-Automatically creates data/input_output.csv
+-Initialize database and automatically creates data/input_output.csv
+-Initial sampling
+	-Uses LHS or random sampling
+-Fit multi-objective GP model
 
-Initial sampling
-Uses LHS or random sampling
-
-Fit multi-objective GP model
-
-Batch BO proposal (qEHVI)
-Proposes new candidate designs
+-Batch BO proposal (qEHVI)
+	-Proposes new candidate designs
 
 Multi-GPU parallel execution
 Runs objective function on assigned GPUs
