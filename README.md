@@ -93,11 +93,11 @@ Simply rerun:`python -m src.pipeline --config configs/exp.yaml`.The system autom
 Configuration file:`configs/exp.yaml`
 
 You should change parameters as follows:
--Design Variables
--Objectives
--Bayesian Optimization Parameters
--GPU Configuration
--Objective Function Entry
+- Design Variables
+- Objectives
+- Bayesian Optimization Parameters
+- GPU Configuration
+- Objective Function Entry
 
 ## 6. Optimization Workflow
 
