@@ -10,13 +10,21 @@ Typical use cases:
 
 ## 2. Key Features
 Supports arbitrary-dimension design variables
+
 Supports any number of objectives (multi-objective optimization)
+
 Batch Bayesian optimization using qEHVI
+
 Single-machine multi-GPU parallel execution
+
 Generic objective_function() interface
+
 Automatic resume after interruption
+
 CSV database records all optimization history
+
 Safe for long-running tasks (hour-level simulations)
+
 Fully configuration-driven (no source modification required)
 
 ## 3. Project Structure
