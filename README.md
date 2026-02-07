@@ -111,9 +111,7 @@ The optimization process proceeds as follows:
 	- Proposes new candidate designsxs
 - Multi-GPU parallel execution
 	- Runs objective function on assigned GPUs
-
-Database update
-Stores results, runtime, and status
-
-Resume capability
-Unfinished samples automatically continue
+- Database update
+	- Stores results, runtime, and status
+- Resume capability
+	- Unfinished samples automatically continue
