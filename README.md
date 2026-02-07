@@ -103,16 +103,14 @@ You should change parameters as follows:
 
 The optimization process proceeds as follows:
 
--Initialize database and automatically creates data/input_output.csv
--Initial sampling
-	-Uses LHS or random sampling
--Fit multi-objective GP model
-
--Batch BO proposal (qEHVI)
-	-Proposes new candidate designs
-
-Multi-GPU parallel execution
-Runs objective function on assigned GPUs
+- Initialize database and automatically creates data/input_output.csv
+- Initial sampling
+	- Uses LHS or random sampling
+- Fit multi-objective GP model
+- Batch BO proposal (qEHVI)
+	- Proposes new candidate designsxs
+- Multi-GPU parallel execution
+	- Runs objective function on assigned GPUs
 
 Database update
 Stores results, runtime, and status
